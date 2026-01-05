@@ -1,3 +1,4 @@
+
 const crypto = require('./crypto.js');
 
 var VERSION = 0;
