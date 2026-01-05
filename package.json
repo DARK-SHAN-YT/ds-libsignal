@@ -14,14 +14,14 @@
   },
   "dependencies": {
     "curve25519-js": "*",
-    "fs": "^0.0.1-security",
-    "path": "^0.12.7",
-    "protobufjs": "7.5.0"
+    "fs": "latest",
+    "path": "latest",
+    "protobufjs": "latest"
   },
-  "files": [
+  "files": [,
     "src/*"
   ],
   "devDependencies": {
-    "eslint": "6.0.1"
+    "eslint": "latest"
   }
 }
