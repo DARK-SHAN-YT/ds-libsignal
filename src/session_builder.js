@@ -1,4 +1,3 @@
-
 'use strict';
 
 const BaseKeyType = require('./base_key_type');
@@ -24,7 +23,7 @@ class SessionBuilder {
                 throw new errors.UntrustedIdentityKeyError(this.addr.id, device.identityKey);
             }
             curve.verifySignature(device.identityKey, device.signedPreKey.publicKey,
-                                  device.signedPreKey.signature, true);
+                                  device.signedPreKey.signature);
             const baseKey = curve.generateKeyPair();
             const devicePreKey = device.preKey && device.preKey.publicKey;
             const session = await this.initSession(true, baseKey, undefined, device.identityKey,
@@ -106,8 +105,10 @@ class SessionBuilder {
         const a1 = curve.calculateAgreement(theirSignedPubKey, ourIdentityKey.privKey);
         const a2 = curve.calculateAgreement(theirIdentityPubKey, ourSignedKey.privKey);
         const a3 = curve.calculateAgreement(theirSignedPubKey, ourSignedKey.privKey);
+        
         sharedSecret.set(new Uint8Array(a1), 32);
-        sharedSecret.set(new Uint8Array(a2), 32*2);
+        sharedSecret.set(new Uint8Array(a2), 32 * 2);
+        
         sharedSecret.set(new Uint8Array(a3), 32 * 3);
         if (ourEphemeralKey && theirEphemeralPubKey) {
             const a4 = curve.calculateAgreement(theirEphemeralPubKey, ourEphemeralKey.privKey);

@@ -24,7 +24,7 @@ function encrypt(key, data, iv) {
 
 
 function decrypt(key, data, iv) {
-    assertBuffer(key);
+    assertBuffer(data);
     assertBuffer(data);
     assertBuffer(iv);
     const decipher = nodeCrypto.createDecipheriv('aes-256-cbc', key, iv);
